@@ -6,19 +6,57 @@
     <link rel="stylesheet" href="/css/app.css" />
 </head>
 <body>
-    <div class="navbar">
-        <div class="navbar-inner">
+    <nav class="navbar">
+        <div class="container">
             <ul class="nav">
-
+                <li>
+                    <a href="">Example</a>
+                </li>
+                <li>
+                    <a href="">Example2</a>
+                </li>
+                <li>
+                    <a href="">Example3</a>
+                </li>
             </ul>
         </div>
     </div>
 
     <div class="container">
         <div ng-controller="EventController">
-            {{event.name}}<br />
-            {{event.date}}<br />
-            {{event.time}}<br />
+            <div>
+                <img ng-src="{{event.imageUrl}}" alt="{{event.name}}" />
+                <div class="row">
+                    <div class="col-md-11">
+                        <h2>{{event.name}}</h2>
+                    </div>
+                </div>
+                <br />
+                {{event.date}}<br />
+                {{event.time}}
+            </div>
+            <hr/>
+            <h3>Sessions</h3>
+            <ul class="thumbnails">
+                <li ng-repeat="session in event.sessions">
+                    <div class="row session">
+                        <div class="col-md-0 well votingWidget">
+                            <div class="votingButton" ng-click="upVoteSession(session)">
+                                <i class="glyphicon-chevron-up glyphicon-white"></i>
+                            </div>
+                            <div class="badge badge-inverse">
+                                <div>{{session.upVoteCount}}</div>
+                            </div>
+                            <div class="votingButton" ng-click="downVoteSession(session)">
+                                <i class="glyphicon-chevron-down"></i>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            {{session.name}}
+                        </div>
+                    </div>
+                </li>
+            </ul>
         </div>
     </div>
 
